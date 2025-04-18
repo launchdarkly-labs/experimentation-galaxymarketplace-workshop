@@ -30,7 +30,7 @@ import LiveLogsContext from "@/utils/contexts/LiveLogsContext";
 export function StoreCart({ cart, setCart }: { cart: any; setCart: any }) {
 	const router = useRouter();
 	const LDClient = useLDClient();
-	// PASTE YOUR CODE BELOW FOR CHALLENGE 2.2 (FEATURE EXPERIMENT)
+	// CHALLENGE 1.2:  PASTE YOUR CODE BELOW TO GET VAUE OF FEATURE FLAG
 
 
 	/////////////////////////////////////////////////////
@@ -70,14 +70,19 @@ export function StoreCart({ cart, setCart }: { cart: any; setCart: any }) {
 
 	const checkOutTracking = () => {
 
-		LDClient?.track("in-cart-total-items", LDClient.getContext(), totalItems);
-		logLDMetricSent("in-cart-total-items", totalItems);
+		// CHALLENGE 2.2: PASTE YOUR CODE BELOW FOR TO TRACK METRIC TO LAUNCHDARKLY
 
 
+
+		//////////////////////////////////////////////////////////
+
+		// TRACKING METRICS TO LAUNCHDARKLY
 		LDClient?.track("in-cart-total-price", LDClient.getContext(), totalCost);
-		logLDMetricSent("in-cart-total-price", totalCost);
-
 		LDClient?.track("customer-checkout", LDClient.getContext(), 1);
+
+		// TRACKING METRICS TO SERVER SIDE BOX
+		logLDMetricSent("in-cart-total-items", totalItems);
+		logLDMetricSent("in-cart-total-price", totalCost);
 		logLDMetricSent("customer-checkout");
 
 	};
@@ -152,7 +157,7 @@ export function StoreCart({ cart, setCart }: { cart: any; setCart: any }) {
 							</Button>
 						</SheetTrigger>
 
-						{ /* PASTE YOUR CODE BELOW FOR CHALLENGE 2.2 (FEATURE EXPERIMENT) */}
+						{ /* PASTE YOUR CODE BELOW FOR CHALLENGE 1.2 (FEATURE EXPERIMENT) */}
 
 							<SheetTrigger onClick={continueShopping} asChild>
 								<div className="text-center mt-4">
