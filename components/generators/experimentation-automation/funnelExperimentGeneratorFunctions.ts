@@ -105,7 +105,7 @@ export const generateStoreHeaderFunnelExperimentResults = async ({
 					if (stage4metric < metricProbablity.metric4) {
 						await client?.track("customer-checkout");
 						await client?.flush();
-						await client?.track("in-cart-total-price", undefined, totalPrice);
+						await client?.track("in-cart-total-price", client.getContext(), totalPrice);
 						await client?.flush();
 					}
 				}

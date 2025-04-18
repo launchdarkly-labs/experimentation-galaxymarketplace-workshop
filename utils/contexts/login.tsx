@@ -22,9 +22,7 @@ const startingUserObject = {
 const LoginContext = createContext<LoginContextType>({
   userObject: startingUserObject,
   isLoggedIn: false,
-  async upgradeLaunchClubStatus() {},
   // async setPlaneContext(),
-  async enrollInLaunchClub() {},
   async updateUserContext() {},
   async loginUser() {},
   async logoutUser() {},
@@ -167,16 +165,11 @@ const [userObject, setUserObject] = useState<Persona | {}>({});
     console.log("Anonymous User", context);
   };
 
-  const enrollInLaunchClub = (): void => {
-    setUserObject((prevObj) => ({ ...prevObj, personaEnrolledInLaunchClub: true }));
-  };
-
   return (
     <LoginContext.Provider
       value={{
         userObject,
         isLoggedIn,
-        enrollInLaunchClub,
         updateUserContext,
         loginUser,
         logoutUser,
